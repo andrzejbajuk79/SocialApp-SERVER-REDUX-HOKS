@@ -7,7 +7,6 @@
   "@testing-library/react": "^9.3.2",
   "@testing-library/user-event": "^7.1.2",
   "axios": "^0.19.2",
-  "logger": "^0.0.1",
   "moment": "^2.24.0",
   "react": "^16.13.0",
   "react-dom": "^16.13.0",
@@ -42,5 +41,8 @@
    "last 1 safari version"
   ]
  },
- "proxy": "http://localhost:5000"
+ "proxy": "http://localhost:5000",
+ "devDependencies": {
+  "redux-logger": "^3.0.6"
+ }
 }

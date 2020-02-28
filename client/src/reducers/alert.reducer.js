@@ -15,7 +15,7 @@ const INITIAL_STATE = [];
 //  }
 // }
 
-const setAlert = (state, payload) => {
+const setAlert = (state = INITIAL_STATE, payload) => {
  return [...state, payload];
 };
 
