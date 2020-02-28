@@ -13,6 +13,8 @@ import Alert from './components/layout/Alert';
 import ScrollToTop from './common/utils/ScrollToTop';
 import {loadUser} from './actions/Auth.actions';
 import setAuthToken from './common/utils/setAuthToken';
+import Dashboard from './components/dashboard/Dashboard';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 if (localStorage.token) {
  setAuthToken(localStorage.token);
@@ -31,6 +33,7 @@ const App = () => {
       <section className='container'>
        <Alert />
        <Switch>
+        <PrivateRoute exact path='/dashboard' component={Dashboard} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login} />
        </Switch>
