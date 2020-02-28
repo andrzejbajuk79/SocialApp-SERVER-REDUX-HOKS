@@ -4,9 +4,10 @@ import {Link} from 'react-router-dom';
 import {RegisterUser} from '../../service/service';
 import PropTypes from 'prop-types'; //impt
 
-import {setAlert} from '../actions/Alert';
+import {setAlert} from '../../actions/Alert.actions';
+import {register} from '../../actions/Auth.actions';
 
-const Register = ({setAlert}) => {
+const Register = ({setAlert, register}) => {
  const [formData, setFormdata] = useState({
   name: '',
   email: '',
@@ -24,7 +25,9 @@ const Register = ({setAlert}) => {
    setAlert('Password not match', 'danger', 5000);
   } else {
    const newUser = {name, email, password};
-   RegisterUser(newUser);
+
+   // RegisterUser(newUser);
+   register({name, email, password});
   }
  };
  return (
@@ -41,7 +44,6 @@ const Register = ({setAlert}) => {
       type='text'
       placeholder='Name'
       name='name'
-      required
      />
     </div>
     <div className='form-group'>
@@ -87,5 +89,6 @@ const Register = ({setAlert}) => {
 };
 Register.propTypes = {
  setAlert: PropTypes.func.isRequired, //ptfr
+ register: PropTypes.func.isRequired,
 };
-export default connect(null, {setAlert})(Register);
+export default connect(null, {setAlert, register})(Register);

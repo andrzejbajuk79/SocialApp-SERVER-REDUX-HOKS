@@ -18,15 +18,17 @@ router.post(
    .not()
    .isEmpty(),
   check('email', 'Please include valid email').isEmail(),
-  check('password', 'Must be at least 6 characters').isLength({min: 6}),
+  check('password', 'Password must be at least 6 characters').isLength({
+   min: 6,
+  }),
  ],
  async (req, res) => {
-  const {error} = userValidation(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
-  // const errors = validationResult(req);
-  // if (!errors.isEmpty()) {
-  //  return res.status(400).json({errors: errors.array()});
-  // }
+  // const {error} = userValidation(req.body);
+  // if (error) return res.status(400).send(error.details[0].message);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+   return res.status(400).json({errors: errors.array()});
+  }
   const {name, email, password} = req.body;
   // Check if user exist
   try {

@@ -1,5 +1,5 @@
 import {createReducer} from '../common/utils/reducersUtils';
-import {SET_ALERT, REMOVE_ALERT} from '../components/actions/constants';
+import {SET_ALERT, REMOVE_ALERT} from '../actions/constants';
 const INITIAL_STATE = [];
 
 // export default function(state = INITIAL_STATE, action) {
