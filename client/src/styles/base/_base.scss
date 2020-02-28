@@ -1,0 +1,96 @@
+/* Global Styles */
+
+* {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+}
+
+body {
+ font-family: 'Raleway', sans-serif;
+ font-size: 1rem;
+ line-height: 1.6;
+ background-color: #fff;
+ color: #333;
+}
+
+/* Mobile Styles */
+@media (max-width: 700px) {
+ .container {
+  margin-top: 8rem;
+ }
+
+ .hide-sm {
+  display: none;
+ }
+
+ /* Text Styles */
+ .x-large {
+  font-size: 3rem;
+ }
+
+ .large {
+  font-size: 2rem;
+ }
+
+ .lead {
+  font-size: 1rem;
+ }
+}
+a {
+ color: var(--primary-color);
+ text-decoration: none;
+}
+
+ul {
+ list-style: none;
+}
+
+img {
+ width: 100%;
+}
+
+/* Text Styles*/
+.x-large {
+ font-size: 4rem;
+ line-height: 1.2;
+ margin-bottom: 1rem;
+}
+
+.large {
+ font-size: 3rem;
+ line-height: 1.2;
+ margin-bottom: 1rem;
+}
+
+.lead {
+ font-size: 1.5rem;
+ margin-bottom: 1rem;
+}
+
+.text-center {
+ text-align: center;
+}
+
+.text-primary {
+ color: var(--primary-color);
+}
+
+.text-dark {
+ color: var(--dark-color);
+}
+
+.bg-light,
+.badge-light {
+ border: #ccc solid 1px;
+}
+
+.round-img {
+ border-radius: 50%;
+}
+
+.line {
+ height: 1px;
+ background: #ccc;
+ margin: 1.5rem 0;
+}

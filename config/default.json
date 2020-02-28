@@ -1,0 +1,6 @@
+{
+ "mongoURI": "mongodb+srv://ptasiek:szpitalna10@cluster0-ornjb.mongodb.net/test?retryWrites=true&w=majority",
+ "jwtSecret": "123456789",
+ "githubClientId": "62f1f47571ea929ad5f6",
+ "githubSecret": "f205c22d4e219c78fdea8d21525dc66cd37c4470"
+}
