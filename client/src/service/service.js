@@ -7,5 +7,8 @@ export const RegisterUser = user => {
   },
  };
  const body = JSON.stringify(user);
- axios.post('/api/users', body, config);
+ axios
+  .post('/api/users', body, config)
+  .then(res => console.log(res.data))
+  .catch(err => console.log(err));
 };

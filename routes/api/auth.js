@@ -34,7 +34,7 @@ router.post(
   if (!errors.isEmpty()) {
    return res.status(400).json({errors: errors.array()});
   }
-  const {name, email, password} = req.body;
+  const {email, password} = req.body;
   // Check if user exist
   try {
    let user = await User.findOne({email});
@@ -44,7 +44,7 @@ router.post(
    //verify User
    const isMatch = await bcrypt.compare(password, user.password);
    if (!isMatch) {
-    return res.status(400).json({errors: [{msg: 'User2 not Found'}]});
+    return res.status(400).json({errors: [{msg: 'User not found'}]});
    }
 
    // Return jsonwebtoken

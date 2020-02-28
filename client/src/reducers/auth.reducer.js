@@ -4,6 +4,8 @@ import {
  REGISTER_SUCCESS,
  USER_LOADED,
  AUTH_ERROR,
+ LOGIN_SUCCESS,
+ LOGIN_FAIL,
 } from '../actions/constants';
 
 const INITIAL_STATE = {
@@ -76,4 +78,6 @@ export default createReducer(INITIAL_STATE, {
  [REGISTER_FAIL]: registerFail,
  [USER_LOADED]: loadingUser,
  [AUTH_ERROR]: registerFail,
+ [LOGIN_SUCCESS]: registerSuccess,
+ [LOGIN_FAIL]: registerFail,
 });

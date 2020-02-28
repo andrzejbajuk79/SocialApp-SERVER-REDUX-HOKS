@@ -5,52 +5,86 @@ import {
  REGISTER_SUCCESS,
  USER_LOADED,
  AUTH_ERROR,
+ LOGIN_SUCCESS,
+ LOGIN_FAIL,
 } from './constants';
 import setAuthToken from '../common/utils/setAuthToken';
+
+const config = {
+ headers: {
+  'Content-Type': 'application/json',
+ },
+};
 
 // Load users
 export const loadUser = () => async dispatch => {
  if (localStorage.token) {
   setAuthToken(localStorage.token);
  }
- try {
-  const res = await axios.get('/api/auth');
-  dispatch({
-   type: USER_LOADED, //
-   payload: res.data,
+
+ axios
+  .get('/api/auth')
+  .then(
+   res =>
+    console.log(res) ||
+    dispatch({
+     type: USER_LOADED, //
+     payload: res.data,
+    })
+  )
+  .catch(err => {
+   dispatch({type: AUTH_ERROR});
   });
- } catch (err) {
-  dispatch({type: AUTH_ERROR});
- }
 };
 
-//Register User
+// Register User
 export const register = ({name, email, password}) => async dispatch => {
+ const body = JSON.stringify({name, email, password});
+
+ axios
+  .post('/api/users', body, config)
+  .then(res =>
+   dispatch({
+    type: REGISTER_SUCCESS,
+    payload: res.data,
+   })
+  )
+  .then(() => dispatch(loadUser()))
+  .catch(err => {
+   const errors = err.response.data.errors;
+   if (errors) {
+    errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+   }
+   dispatch({
+    type: REGISTER_FAIL,
+   });
+  });
+};
+
+// Login User
+export const login = (email, password) => async dispatch => {
+ const body = JSON.stringify({email, password});
  const config = {
   headers: {
    'Content-Type': 'application/json',
   },
  };
- const body = JSON.stringify({name, email, password});
-
- const user = {name, email, password};
- try {
-  // const res = RegisterUser(user);
-  const res = await axios.post('/api/users', body, config);
-  console.log(res.data);
-
-  dispatch({
-   type: REGISTER_SUCCESS,
-   payload: res.data,
+ axios
+  .post('/api/auth', body, config)
+  .then(res =>
+   dispatch({
+    type: LOGIN_SUCCESS,
+    payload: res.data,
+   })
+  )
+  .then(() => dispatch(loadUser()))
+  .catch(err => {
+   const errors = err.response.data.errors;
+   if (errors) {
+    errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+   }
+   dispatch({
+    type: LOGIN_FAIL,
+   });
   });
- } catch (err) {
-  const errors = err.response.data.errors;
-  console.log(errors);
-  if (errors) {
-   errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
-  }
-  dispatch({
-   type: REGISTER_FAIL,
-  });
- }
 };
