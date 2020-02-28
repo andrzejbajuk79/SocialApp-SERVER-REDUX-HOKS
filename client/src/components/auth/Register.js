@@ -21,7 +21,7 @@ const Register = ({setAlert}) => {
   e.preventDefault();
   if (password !== password2) {
    // props.dispatch(setAlert('Password not match', 'danger'));
-   setAlert('Password not match', 'danger');
+   setAlert('Password not match', 'danger', 5000);
   } else {
    const newUser = {name, email, password};
    RegisterUser(newUser);
