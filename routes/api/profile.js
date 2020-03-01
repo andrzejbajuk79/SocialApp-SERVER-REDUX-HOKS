@@ -116,9 +116,9 @@ router.post(
 // @route GET api/profile
 // @desc  Get all profiles
 // @acces Public
-router.get('/all', async (req, res) => {
+router.get('/all', (req, res) => {
  const errors = {};
- const profiles = await Profile.find()
+ Profile.find()
   .populate('users', ['name', 'avatar'])
   .then(profiles => {
    if (!profiles) {
@@ -130,6 +130,7 @@ router.get('/all', async (req, res) => {
   })
   .catch(err => res.status(404).json({profile: 'There are no profiles'}));
 });
+
 // @route GET api/profile/user/:user_id
 // @desc  Get profile buy user ID
 // @acces Public
@@ -154,9 +155,6 @@ router.delete('/', auth, async (req, res) => {
  const errors = {};
 
  try {
-  // remove users posts
-
-  // remove profile
   await Profile.findOneAndRemove({users: req.user.id});
   await User.findOneAndRemove({_id: req.user.id});
   res.json({msg: 'User deleted'});

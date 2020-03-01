@@ -24,8 +24,6 @@ const Register = ({setAlert, register, isAuthenticated}) => {
    // props.dispatch(setAlert('Password not match', 'danger'));
    setAlert('Password not match', 'danger', 5000);
   } else {
-   const newUser = {name, email, password};
-
    // RegisterUser(newUser);
    register({name, email, password});
   }

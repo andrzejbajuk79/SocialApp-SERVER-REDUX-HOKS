@@ -2,17 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom';
 //Redux
+import {loadUser} from './actions/Auth.actions';
+import setAuthToken from './common/utils/setAuthToken';
 import store from './store';
 import {Provider} from 'react-redux';
 import App from './App';
-import ScrollToTop from './common/utils/ScrollToTop';
 
+if (localStorage.token) {
+ setAuthToken(localStorage.token);
+}
+store.dispatch(loadUser());
 ReactDOM.render(
  <Provider store={store}>
   <Router>
-   <ScrollToTop>
-    <App store={store} />
-   </ScrollToTop>
+   {/* <ScrollToTop> */}
+   <App />
+   {/* </ScrollToTop> */}
   </Router>
  </Provider>,
 

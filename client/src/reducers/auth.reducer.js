@@ -7,6 +7,7 @@ import {
  LOGIN_SUCCESS,
  LOGIN_FAIL,
  LOGOUT,
+ ACCOUNT_DELETED,
 } from '../actions/constants';
 
 const INITIAL_STATE = {
@@ -82,4 +83,5 @@ export default createReducer(INITIAL_STATE, {
  [AUTH_ERROR]: registerFail,
  [USER_LOADED]: loadingUser,
  [LOGIN_SUCCESS]: registerSuccess,
+ [ACCOUNT_DELETED]: registerFail,
 });
