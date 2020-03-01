@@ -1,4 +1,4 @@
-import {createReducer} from '../common/utils/reducersUtils';
+import {createReducer} from './reducersUtils';
 import {
  REGISTER_FAIL,
  REGISTER_SUCCESS,

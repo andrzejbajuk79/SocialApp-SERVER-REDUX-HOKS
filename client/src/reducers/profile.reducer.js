@@ -1,4 +1,4 @@
-import {createReducer} from '../common/utils/reducersUtils';
+import {createReducer} from './reducersUtils';
 import {PROFILE_ERROR, GET_PROFILE, CLEAR_PROFILE} from '../actions/constants';
 const INITIAL_STATE = {
  profile: null,

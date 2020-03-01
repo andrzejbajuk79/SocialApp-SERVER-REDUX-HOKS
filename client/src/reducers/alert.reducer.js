@@ -1,4 +1,4 @@
-import {createReducer} from '../common/utils/reducersUtils';
+import {createReducer} from './reducersUtils';
 import {SET_ALERT, REMOVE_ALERT} from '../actions/constants';
 const INITIAL_STATE = [];
 
