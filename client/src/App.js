@@ -14,6 +14,9 @@ import EditProfile from './components/profile-forms/EditProfile';
 import AddExperience from './components/add-credentials/AddExperience';
 import AddEducation from './components/add-credentials/AddEducation';
 import Profiles from './components/profiles/Profiles';
+import Profile from './components/profile/Profile';
+import Post from './components/posts/Post';
+import NotFound from './components/not-found/NotFound';
 
 const App = ({store}) => {
  // useEffect(() => {
@@ -30,6 +33,8 @@ const App = ({store}) => {
      <PrivateRoute exact path='/create-profile' component={CreateProfile} />
      <PrivateRoute exact path='/edit-profile' component={EditProfile} />
      <Route exact path='/profiles' component={Profiles} />
+     <PrivateRoute exact path='/posts' component={Post} />
+     <Route exact path='/profile/:id' component={Profile} />
      <Route exact path='/register' component={Register} />
      <Route exact path='/login' component={Login} />
     </Switch>
@@ -39,6 +44,7 @@ const App = ({store}) => {
     <Switch>
      <PrivateRoute exact path='/add-education' component={AddEducation} />
     </Switch>
+    <Route exact path='/not-found' component={NotFound} />
    </section>
   </Fragment>
  );

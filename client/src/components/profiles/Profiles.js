@@ -42,5 +42,6 @@ class Profiles extends Component {
 Profiles.propTypes = {};
 const mapStateToProps = state => ({
  profile: state.profile,
+ auth: state.auth,
 });
 export default connect(mapStateToProps, {getProfiles})(Profiles);

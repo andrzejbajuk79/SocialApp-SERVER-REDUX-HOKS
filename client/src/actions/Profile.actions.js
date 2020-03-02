@@ -1,13 +1,13 @@
 import axios from 'axios';
 import {setAlert} from './Alert.actions';
 import {
- GET_PROFILE,
  PROFILE_ERROR,
  //  GET_ERRORS,
  UPDATE_PROFILE,
  CLEAR_PROFILE,
  ACCOUNT_DELETED,
  GET_PROFILES,
+ GET_PROFILE,
  PROFILE_LOADING,
  CLEAR_CURRENT_PROFILE,
  GET_REPOS,
@@ -208,25 +208,29 @@ export const getProfiles = () => dispatch => {
   )
   .catch(err =>
    dispatch({
-    type: GET_PROFILES,
-    payload: null,
+    type: PROFILE_ERROR,
+    payload: {
+     msg: err.response.statusText, //
+     status: err.response.status,
+    },
    })
   );
 };
 
 // Get PRofile by ID
 export const getProfileById = userId => dispatch => {
+ dispatch(setProfileLoading());
  axios
-  .get(`/api/profile/user/:${userId}`)
+  .get(`/api/profile/user/${userId}`)
   .then(res =>
    dispatch({
-    type: GET_PROFILES,
+    type: GET_PROFILE,
     payload: res.data,
    })
   )
   .catch(err =>
    dispatch({
-    type: GET_PROFILES,
+    type: GET_PROFILE,
     payload: null,
    })
   );
@@ -244,8 +248,11 @@ export const getGithubRepos = username => dispatch => {
   )
   .catch(err =>
    dispatch({
-    type: GET_PROFILES,
-    payload: null,
+    type: PROFILE_ERROR,
+    payload: {
+     msg: err.response.statusText, //
+     status: err.response.status,
+    },
    })
   );
 };
