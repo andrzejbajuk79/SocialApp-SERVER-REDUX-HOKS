@@ -4,6 +4,8 @@ import {getPosts} from '../../actions/Post.actions';
 import {Link} from 'react-router-dom';
 import Spinner from '../../common/images/Spinner';
 import PropTypes from 'prop-types';
+import PostForm from './PostForm';
+import PostFeed from './PostFeed';
 
 // racfp
 class Post extends Component {
@@ -11,7 +13,27 @@ class Post extends Component {
   this.props.getPosts();
  }
  render() {
-  return <div></div>;
+  const {posts, loading} = this.props.post;
+  let postContent;
+
+  if (posts === null || loading) {
+   postContent = <Spinner />;
+  } else {
+   postContent = <PostFeed posts={posts} />;
+  }
+
+  return (
+   <div className='feed'>
+    <div className='container'>
+     <div className='row'>
+      <div className='col-md-12'>
+       <PostForm />
+       {postContent}
+      </div>
+     </div>
+    </div>
+   </div>
+  );
  }
 }
 
@@ -20,6 +42,6 @@ Post.propTypes = {
  post: PropTypes.object.isRequired, //ptor
 };
 const mapStateToProps = state => ({
- post: postMessage.post,
+ post: state.post,
 });
 export default connect(mapStateToProps, {getPosts})(Post);

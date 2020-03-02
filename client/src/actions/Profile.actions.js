@@ -62,10 +62,7 @@ export const createProfile = (
    if (errors) {
     errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
    }
-   //  dispatch({
-   //   type: GET_ERRORS,
-   //   payload: err.response.data,
-   //  });
+
    dispatch({
     type: PROFILE_ERROR,
     payload: {
